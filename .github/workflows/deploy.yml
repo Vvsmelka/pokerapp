@@ -13,27 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Export web build
-        env:
-          EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: npx expo export --platform web --output-dir dist
-
-      - name: Add .nojekyll
-        run: touch dist/.nojekyll
-
-      - name: Check dist contents
-        run: ls -la dist/
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: .
+          exclude_assets: '.github,node_modules,app,components,lib,store,types,constants,assets,package.json,tsconfig.json,babel.config.js,eas.json,supabase-schema.sql,.env,.env.example'
