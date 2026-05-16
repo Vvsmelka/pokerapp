@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 7.0.0"
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "ios": {
+        "simulator": false
+      }
+    },
+    "production": {
+      "ios": {
+        "buildConfiguration": "Release"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "tu@email.com",
+        "ascAppId": "TU_APP_STORE_CONNECT_ID"
+      }
+    }
+  }
+}
