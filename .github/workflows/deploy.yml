@@ -24,7 +24,13 @@ jobs:
         env:
           EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: npx expo export --platform web
+        run: npx expo export --platform web --output-dir dist
+
+      - name: Add .nojekyll
+        run: touch dist/.nojekyll
+
+      - name: Check dist contents
+        run: ls -la dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
